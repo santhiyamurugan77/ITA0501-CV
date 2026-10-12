@@ -1,0 +1,35 @@
+import cv2
+import matplotlib.pyplot as plt
+
+def analyze_histogram(image_path):
+    # Read the colour image
+    img = cv2.imread(image_path)
+
+    if img is None:
+        print("Error: Image not found. Check the file name and path.")
+        return
+
+    # Convert BGR to RGB for correct display in Matplotlib
+    rgb = cv2.cvtColor(img, cv2.COLOR_BGR2RGB)
+
+    # Calculate histograms for Blue, Green, and Red channels
+    colors = ("b", "g", "r")
+    for i, color in enumerate(colors):
+        hist = cv2.calcHist([img], [i], None, [256], [0, 256])
+        plt.plot(hist, color=color, label=color.upper())
+
+    plt.title("Color Histogram")
+    plt.xlabel("Pixel Intensity (0-255)")
+    plt.ylabel("Number of Pixels")
+    plt.xlim([0, 256])
+    plt.legend()
+    plt.tight_layout()
+
+    plt.figure()
+    plt.imshow(rgb)
+    plt.title("Input Image")
+    plt.axis("off")
+    plt.show()
+
+# Run the function
+analyze_histogram("sample.jpg")

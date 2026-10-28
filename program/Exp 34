@@ -1,0 +1,15 @@
+
+import cv2
+import numpy as np
+
+h = int(input("Enter image height: "))
+w = int(input("Enter image width: "))
+
+img = np.ones((h, w, 3), dtype=np.uint8) * 255
+radius = min(h, w) // 4
+
+cv2.circle(img, (w//2, h//2), radius, (255, 0, 0), 3)
+
+cv2.imshow("Circle", img)
+cv2.waitKey(0)
+cv2.destroyAllWindows()

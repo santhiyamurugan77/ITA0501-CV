@@ -1,0 +1,19 @@
+
+import cv2
+import numpy as np
+
+img = cv2.imread("image.jpg")
+
+if img is not None:
+    hsv = cv2.cvtColor(img, cv2.COLOR_BGR2HSV)
+
+    lower = np.array([35, 40, 40])
+    upper = np.array([85, 255, 255])
+
+    background_mask = cv2.inRange(hsv, lower, upper)
+    result = cv2.bitwise_and(img, img, mask=background_mask)
+
+    cv2.imshow("Background Mask", background_mask)
+    cv2.imshow("Selected Background Colors", result)
+    cv2.waitKey(0)
+    cv2.destroyAllWindows()

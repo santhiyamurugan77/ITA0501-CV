@@ -1,0 +1,13 @@
+
+import cv2
+
+img = cv2.imread("image.jpg")
+
+if img is not None:
+    roi = img[50:200, 50:200].copy()
+    img[250:400, 250:400] = cv2.resize(roi, (150, 150))
+
+    cv2.imshow("ROI", roi)
+    cv2.imshow("Copied and Pasted Image", img)
+    cv2.waitKey(0)
+    cv2.destroyAllWindows()

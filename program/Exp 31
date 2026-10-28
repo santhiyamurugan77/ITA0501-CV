@@ -1,0 +1,15 @@
+
+import cv2
+
+img = cv2.imread("image.jpg", 0)
+
+if img is not None:
+    lower = int(input("Enter lower threshold: "))
+    upper = int(input("Enter upper threshold: "))
+
+    result = cv2.inRange(img, lower, upper)
+
+    cv2.imshow("Original", img)
+    cv2.imshow("Segmented Image", result)
+    cv2.waitKey(0)
+    cv2.destroyAllWindows()
